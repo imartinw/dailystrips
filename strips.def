@@ -1,6 +1,6 @@
 group martin
         desc Martin's Favorite Strips
-        include userfriendly shermanslagoon dilbert garfield xkcd nichtlustig ruthe ulistein
+        include userfriendly shermanslagoon dilbert garfield xkcd ruthe ulistein
 end
 
 
