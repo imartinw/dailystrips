@@ -1,0 +1,39 @@
+#!/bin/bash
+
+TMPDIR="$HOME/tmp"
+DSTDIR="/serv/data/DailyStrips"
+TODAYDIR="$(date +%Y.%m.%d)"
+USERAGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21"
+
+# download pictures
+dailystrips --basedir $TMPDIR --local --dailydir --quiet --defs ~/strips.def --useragent "${USERAGENT}" @martin
+
+# delete unnecessary .html files
+find $TMPDIR -name *.html -exec rm {} \;
+
+# rename pictures
+PICLIST=$(mktemp)
+find $TMPDIR/$TODAYDIR -type f -printf '%f\n' | sort > $PICLIST
+while read PIC; do
+	BASENAME=${PIC%.*}
+	SUFFIX=$(file -b $TMPDIR/$TODAYDIR/$PIC | cut -d' ' -f1)
+	SUFFIX=${SUFFIX,,}
+	DSTNAME=$BASENAME.$SUFFIX
+	if [ "$PIC" != "$DSTNAME" ]; then
+		mv $TMPDIR/$TODAYDIR/$PIC $TMPDIR/$TODAYDIR/$DSTNAME
+	fi
+done < $PICLIST
+rm -f $PICLIST
+
+# move pictures
+if [ -d $DSTDIR/$TODAYDIR ]; then
+	rm -Rf $DSTDIR/$TODAYDIR
+fi
+
+mv $TMPDIR/$TODAYDIR $DSTDIR/
+chgrp -R btsync $DSTDIR/
+
+# delete old pictures
+find $DSTDIR -type d -mtime +5 -exec rm -Rf {} \;
+
+# end of file

@@ -1,0 +1,72 @@
+group martin
+        desc Martin's Favorite Strips
+        include userfriendly shermanslagoon dilbert garfield xkcd nichtlustig ruthe ulistein
+end
+
+
+strip userfriendly
+        name UserFriendly
+        homepage http://www.userfriendly.org/static
+        type search
+        searchpattern SRC="(http://www.userfriendly.org/cartoons/archives/%y[a-z]{3}/xuf[0-9]{6}\.gif)"
+        provides latest
+end
+
+strip shermanslagoon
+        name ShermansLagoon
+        homepage http://shermanslagoon.com/
+        type search
+	searchpattern (https://safr.kingfeatures.com/idn/[a-z]*/zone/js/content.php\?file=[0-9a-zA-Z=]*)
+        provides latest
+end
+
+strip dilbert
+        name Dilbert
+        homepage http://www.dilbert.com/
+        type search
+	searchpattern src="(http://assets.amuniversal.com/[a-z0-9]*)"
+        provides latest
+end
+
+strip garfield
+        name Garfield
+        homepage http://www.gocomics.com/garfield
+        type search
+        searchpattern src="(http://assets.amuniversal.com/[^"]*)"
+        provides latest
+
+end
+
+strip xkcd
+        name xkcd
+        homepage http://xkcd.com
+        type search
+        searchpattern src="//(imgs.xkcd.com/comics/[^"]*)"
+        provides latest
+end
+
+strip nichtlustig
+        name NichtLustig
+        homepage http://www.nichtlustig.de/main.html
+        type search
+        searchpattern (http://static.nichtlustig.de/comics/full/[0-9]{6}.jpg)
+        provides latest
+end
+
+strip ruthe
+	name Ruthe
+	homepage http://www.ruthe.de/index.php
+	type search
+	baseurl  http://www.ruthe.de/
+	searchpattern src="(/cartoons/strip_[0-9]{4}.jpg)"
+	provides latest
+end
+
+strip ulistein
+	name UliStein
+	homepage http://ulistein.de
+	type generate
+	imageurl http://ulistein.de/cartoon.php?tag=1
+	provides latest
+end
+
