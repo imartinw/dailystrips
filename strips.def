@@ -6,10 +6,10 @@ end
 
 strip userfriendly
         name UserFriendly
-        homepage http://www.userfriendly.org/static
+        homepage http://ars.userfriendly.org/cartoons/?id=%Y%m%d
         type search
-        searchpattern SRC="(http://www.userfriendly.org/cartoons/archives/%y[a-z]{3}/xuf[0-9]{6}\.gif)"
-        provides latest
+        searchpattern SRC="(http://www.userfriendly.org/cartoons/archives/%y[a-z]{3}/uf[0-9]{6}\.gif)"
+        provides any
 end
 
 strip shermanslagoon
@@ -22,18 +22,19 @@ end
 
 strip dilbert
         name Dilbert
-        homepage http://www.dilbert.com/
+        homepage https://www.dilbert.com/
         type search
-	searchpattern src="(http://assets.amuniversal.com/[a-z0-9]*)"
+	baseurl https://assets.amuniversal.com/
+	searchpattern alt=" - Dilbert by Scott Adams".*src="//assets.amuniversal.com/([a-z0-9]*)"
         provides latest
 end
 
 strip garfield
         name Garfield
-        homepage http://www.gocomics.com/garfield
+        homepage https://www.gocomics.com/garfield/%Y/%m/%d
         type search
-        searchpattern src="(http://assets.amuniversal.com/[^"]*)"
-        provides latest
+        searchpattern src="(https://assets.amuniversal.com/[a-z0-9]*)"
+        provides any
 
 end
 
