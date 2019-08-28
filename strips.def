@@ -1,6 +1,6 @@
 group martin
         desc Martin's Favorite Strips
-        include userfriendly shermanslagoon dilbert garfield xkcd ruthe ulistein
+        include userfriendly shermanslagoon dilbert garfield xkcd ruthe
 end
 
 
@@ -14,9 +14,10 @@ end
 
 strip shermanslagoon
         name ShermansLagoon
-        homepage http://shermanslagoon.com/
+        homepage http://www.comicskingdom.com/sherman-s-lagoon
         type search
-	searchpattern (https://safr.kingfeatures.com/idn/[a-z]*/zone/js/content.php\?file=[0-9a-zA-Z=]*)
+	baseurl http://safr.kingfeatures.com/api/img.php?e=gif&s=c&file=
+	searchpattern file=([^=]*=)
         provides latest
 end
 
@@ -25,7 +26,7 @@ strip dilbert
         homepage https://www.dilbert.com/
         type search
 	baseurl https://assets.amuniversal.com/
-	searchpattern alt=" - Dilbert by Scott Adams".*src="//assets.amuniversal.com/([a-z0-9]*)"
+	searchpattern src="//assets.amuniversal.com/([a-z0-9]*)"
         provides latest
 end
 
